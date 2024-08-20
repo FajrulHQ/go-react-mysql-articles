@@ -62,6 +62,7 @@ func (h *PostController) GetPosts(c *gin.Context) {
 	var posts []models.Post
 	limitQuery := c.Query("limit")
 	offsetQuery := c.Query("offset")
+	statusQuery := c.Query("status")
 
 	limit, err := strconv.Atoi(limitQuery)
 	if err != nil {
@@ -73,8 +74,22 @@ func (h *PostController) GetPosts(c *gin.Context) {
 		offset = 0 // Default offset if not provided
 	}
 	fmt.Print(limit, offset)
-	h.DB.Limit(limit).Offset(offset).Find(&posts)
-	c.JSON(http.StatusOK, posts)
+	query := h.DB.Model(&models.Post{})
+	if statusQuery != "" {
+		query = query.Where("status = ?", statusQuery)
+	}
+
+	var total int64
+	query.Count(&total)
+	query = query.Limit(limit).Offset(offset)
+
+	result := query.Find(&posts)
+	if result.Error != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"total": total, "limit": limit, "offset": offset, "data": posts})
 }
 
 // [GET] Controller to get articles by id
