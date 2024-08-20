@@ -4,4 +4,6 @@ export interface ArticleType {
   content?: string
   category?: string
   status?: 'publish' | 'draft' | 'trash'
+  created_at?: string
+  edited_at?: string
 }

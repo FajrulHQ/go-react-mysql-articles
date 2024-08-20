@@ -1,10 +1,11 @@
 import { Button, Card, Pagination, Tag } from "antd";
-import { ArrowLeftCircle } from "lucide-react";
+import { ArrowLeftCircle, Monitor } from "lucide-react";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import APIRequest from "../../../api/request";
 import { useEffect, useState } from "react";
 import { useArticleStore } from "../../../store/article";
+import { encode_ } from "../../../routes/utils";
 
 export default function ArticlePreview() {
   const navigate = useNavigate()
@@ -28,11 +29,11 @@ export default function ArticlePreview() {
   useEffect(() => {
     onRetrieveArticle()
   }, [limit, offset]);
-  
+
   return (
     <div className="h-screen bg-gray-50">
-      <div className="flex justify-between bg-white p-2 shadow-sm">
-        <ArrowLeftCircle className="cursor-pointer text-primary hover:text-primary/70" onClick={() => navigate('/')} />
+      <div className="flex justify-end bg-white shadow-sm">
+        <Button onClick={() => navigate('/')} type="text" size="large"><Monitor className="h-4 w-4" />All Article</Button>
       </div>
       <div className="mx-16 my-8 grid grid-cols-3 gap-8">
         <div className="flex items-center justify-between  col-span-3">
@@ -51,13 +52,13 @@ export default function ArticlePreview() {
           />
         </div>
         {articles.map(({ title, content, category, id, status }) => (
-          <Card key={id} hoverable>
+          <Card key={id} hoverable onClick={() => navigate('/preview/' + encode_(String(id)))}>
             <Card.Meta
               title={<p className="text-lg font-semibold">{title}</p>}
               description={
                 <div>
                   <div className="flex mb-1 flex-wrap">
-                    {category && category.split(',').map(item => <Tag>{item}</Tag>)}
+                    {category && category.split(',').map((item, i) => <Tag key={i}>{item}</Tag>)}
                   </div>
                   {content}
                 </div>

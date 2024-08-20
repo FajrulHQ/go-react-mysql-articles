@@ -45,6 +45,7 @@ DB_NAME=posts
 - `GET /articles`: Retrieves all article.
 - `GET /articles/{id}`: Retrieves a specific article by ID.
 - `GET /articles/?limit={limit}&offset={offset}`: Retrieves articles by limit and offset.
+- `GET /articles/?status={status}`: Filter articles by status.
 - `POST /articles`: Creates a new article. (Payload should be a JSON object representing the Post struct)
 - `PUT /articles/{id}`: Updates an existing article. (Payload should be a JSON object with updated Post information)
 - `DELETE /articles/{id}`: Deletes an existing article.

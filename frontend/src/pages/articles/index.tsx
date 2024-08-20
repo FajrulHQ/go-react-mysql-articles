@@ -76,7 +76,7 @@ export default function ArticlePage() {
     else if (modal === 'edit') {
       onEditArticle({ article })
     }
-
+    onRetrieveArticle()
     setArticle({})
     onModal(undefined)
   }
@@ -153,11 +153,14 @@ export default function ArticlePage() {
         accessKey={selected_tab}
         items={tab_items}
         onChange={(key: any) => { setSelectedTab(key); setPagination({ total, limit, offset: 0 }) }}
+        tabBarExtraContent={
+          <Button onClick={() => navigate('/preview')} type="text" size="large"><Eye className="h-4 w-4" />Preview</Button>
+        }
       />
       <div className="mx-8 space-y-2">
         <div className="flex justify-end gap-2">
           <Button className="mr-2" onClick={() => { onModal('add'); setArticle({ status: 'draft' }) }}><Plus className="h-4 w-4" />Add New</Button>
-          <Button className="mr-2" onClick={() => navigate('/preview')} type="primary"><Eye className="h-4 w-4" />Preview</Button>
+          {/* <Button className="mr-2" onClick={() => navigate('/preview')} type="primary"><Eye className="h-4 w-4" />Preview</Button> */}
         </div>
         <Table
           columns={columns}

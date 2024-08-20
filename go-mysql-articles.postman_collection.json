@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "dbaf3a9f-b0f4-46c6-8977-68864d934aed",
+		"name": "go-mysql-articles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34006317",
+		"_collection_link": "https://www.postman.com/fajrulhq/workspace/fajrulhq-portfolio/collection/34006317-dbaf3a9f-b0f4-46c6-8977-68864d934aed?action=share&source=collection_link&creator=34006317"
+	},
+	"item": [
+		{
+			"name": "list of articles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/articles/",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of articles by limit offset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/articles?limit=1&offset=0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of articles by status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/articles?limit=1&offset=0",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "1"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list of articles by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/articles/6",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update article",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"trash\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/articles/6",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete article",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{API_URL}}/articles/8",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create article",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Go language hits top 10 in the Tiobe index\",\n    \"category\": \"social\",\n    \"status\": \"draft\",\n    \"content\": \"Google’s Go language, or golang, has reached its highest position ever in the Tiobe language popularity index. The language, now in the eighth ranked position for language popularity, has been on the rise for several years.  Go, which is probably best known as the language used to develop Docker and Kubernetes, climbed to the top 10 in the Tiobe index a year ago, but its current position is the highest ever.  Paul Jansen, CEO of Tiobe, recalled how Go scaled the Tiobe index after being announced by Google in November 2009, winning Tiobe’s Language of the Year award. That award goes to the language that has gained the most popularity in a given year, but in the case of Go, the popularity was short-lived. “Unexpectedly, the hype was over soon. In 2015, Go hit position #122 in the TIOBE index and all seemed lost,” Jansen said.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{API_URL}}/articles",
+					"host": [
+						"{{API_URL}}"
+					],
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

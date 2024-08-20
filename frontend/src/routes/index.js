@@ -1,6 +1,7 @@
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import ArticlePage from "../pages/articles";
 import ArticlePreview from "../pages/articles/preview";
+import ArticlePreviewDetail from "../pages/articles/preview/detail";
 
 const routes = createBrowserRouter([
   {
@@ -13,7 +14,17 @@ const routes = createBrowserRouter([
       },
       {
         path: 'preview',
-        element: <ArticlePreview />,
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <ArticlePreview />,
+          },
+          {
+            path: ':id',
+            element: <ArticlePreviewDetail />
+          }
+        ]
       },
 
     ]
